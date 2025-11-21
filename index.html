@@ -785,6 +785,7 @@ function checkAnswers() {
         <h3 style="margin: 0 0 15px 0; color: #1565c0;">📋 Student Information</h3>
         <p style="margin: 5px 0; color: #0d47a1;"><b>Name:</b> ${studentName}</p>
         <p style="margin: 5px 0; color: #0d47a1;"><b>Section:</b> ${studentSection}</p>
+        <p style="margin: 5px 0; color: #0d47a1;"><b>Score:</b> <span id="temp-score">Calculating...</span></p>
     </div>`;
     
     feedback += "<h3 style='color: #fff;'>📊 Results:</h3><ul style='list-style: none; padding: 0;'>";
@@ -819,6 +820,17 @@ function checkAnswers() {
     
     const resultBox = document.getElementById("quizResult");
     resultBox.innerHTML = feedback;
+    
+    // Update the score in Student Information section
+    setTimeout(() => {
+        const scoreElement = document.getElementById("temp-score");
+        if (scoreElement) {
+            scoreElement.textContent = `${score}/20 (${percentage}%)`;
+            scoreElement.style.fontWeight = 'bold';
+            scoreElement.style.color = percentage >= 80 ? '#4caf50' : percentage >= 70 ? '#ff9800' : '#f44336';
+        }
+    }, 100);
+    
     resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     
     // Confetti effect for high scores

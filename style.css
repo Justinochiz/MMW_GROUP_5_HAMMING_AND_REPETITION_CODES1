@@ -1,0 +1,626 @@
+/* ======== CSS VARIABLES ======== */
+:root {
+    --primary-red: #a00000;
+    --dark-red: #7a0000;
+    --light-red: #c40000;
+    --lighter-red: #ffdddd;
+    --dark-bg: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-light: #ffffff;
+    --text-muted: #b0b0b0;
+    --accent-green: #28a745;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --gradient-bg: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-bg) 100%);
+}
+
+/* ======== GLOBAL ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}  
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ======== HEADER ======== */
+header {
+    background: var(--gradient-bg);
+    color: var(--text-light);
+    padding: 25px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+header h1 {
+    font-size: 2.5em;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1em;
+    color: var(--lighter-red);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Header Background Animation */
+.header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 100px;
+    height: 100px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.shape-3 {
+    width: 70px;
+    height: 70px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+/* ======== NAVBAR ======== */
+nav {
+    background: rgba(40, 40, 40, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 12px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav a {
+    color: var(--text-light);
+    padding: 14px 25px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    border-radius: 8px;
+    margin: 0 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary-red);
+    transition: var(--transition);
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+nav a:hover::before {
+    width: 100%;
+}
+
+nav a.active {
+    background: var(--primary-red);
+}
+
+nav a.active::before {
+    width: 100%;
+    background: var(--text-light);
+}
+
+/* ======== SECTIONS ======== */
+section {
+    background: var(--card-bg);
+    margin: 40px auto;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 900px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+section h2 {
+    color: var(--text-light);
+    border-left: 5px solid var(--primary-red);
+    padding-left: 15px;
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+section p {
+    margin-bottom: 20px;
+    text-align: justify;
+    color: var(--text-muted);
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+.example-box {
+    background: rgba(160, 0, 0, 0.1);
+    border-left: 5px solid var(--primary-red);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.example-box:hover {
+    background: rgba(160, 0, 0, 0.15);
+    transform: translateX(5px);
+}
+
+/* ======== TEAM SECTION ======== */
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.member {
+    background: linear-gradient(145deg, var(--card-bg), #252525);
+    width: 220px;
+    border-radius: 15px;
+    text-align: center;
+    padding: 25px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.member::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: var(--transition);
+}
+
+.member:hover::before {
+    left: 100%;
+}
+
+.member:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(160, 0, 0, 0.3);
+    border-color: var(--primary-red);
+}
+
+.member h4 {
+    color: var(--text-light);
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.member p {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 1em;
+    color: var(--text-muted);
+}
+
+.member .leader {
+    color: var(--accent-green);
+    font-weight: bold;
+}
+
+/* ======== FOOTER ======== */
+footer {
+    text-align: center;
+    background: var(--dark-bg);
+    color: var(--text-muted);
+    padding: 30px 20px;
+    font-size: 0.9em;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 60px;
+}
+
+/* ======== BUTTONS ======== */
+.lesson-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+    color: var(--text-light);
+    padding: 18px 35px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1em;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(160, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: var(--transition);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(160, 0, 0, 0.5);
+    background: linear-gradient(135deg, var(--light-red), var(--primary-red));
+}
+
+/* ======== SLIDE STYLE ======== */
+.slide {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 900px;
+    box-shadow: var(--shadow);
+    font-size: 1.1em;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.slide:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.slide h2, .slide h3 {
+    color: var(--text-light);
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.slide h2 {
+    font-size: 2em;
+    border-left: 5px solid var(--primary-red);
+    padding-left: 15px;
+}
+
+.slide p, .slide li {
+    margin-bottom: 15px;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.slide ul {
+    margin-left: 30px;
+}
+
+.slide li {
+    position: relative;
+    padding-left: 10px;
+}
+
+.slide li::before {
+    content: '•';
+    color: var(--primary-red);
+    font-weight: bold;
+    position: absolute;
+    left: -15px;
+}
+
+.navigation {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+    color: var(--text-light);
+    padding: 14px 28px;
+    margin: 10px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(160, 0, 0, 0.3);
+}
+
+.nav-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(160, 0, 0, 0.5);
+    background: linear-gradient(135deg, var(--light-red), var(--primary-red));
+}
+
+.nav-btn:disabled {
+    background: var(--text-muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ======== SLIDE TRANSITION EFFECT ======== */
+.slide {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    display: block !important;
+}
+
+.slide {
+    display: none;
+}
+
+.page-title {
+    text-align: center;
+    border-left: none;
+    margin-top: 30px;
+    font-size: 2.5em;
+    color: var(--text-light);
+    font-weight: 700;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--primary-red);
+    border-radius: 2px;
+}
+
+/* ======== ANIMATIONS ======== */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.animate-fade-in-delay {
+    animation: fadeIn 1s ease-out 0.3s both;
+}
+
+.animate-card {
+    animation: fadeIn 1s ease-out 0.6s both;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+    nav a { 
+        padding: 12px 18px;
+        font-size: 0.9em;
+    }
+    
+    section { 
+        padding: 25px;
+        margin: 25px 15px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    header p {
+        font-size: 1em;
+    }
+    
+    .lesson-buttons {
+        gap: 20px;
+    }
+    
+    .btn {
+        padding: 15px 25px;
+        font-size: 1em;
+    }
+    
+    .slide {
+        padding: 25px;
+        margin: 25px 15px;
+    }
+    
+    .team {
+        gap: 15px;
+    }
+    
+    .member {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .nav-btn {
+        padding: 12px 20px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav a {
+        width: 90%;
+        text-align: center;
+        margin: 2px 0;
+    }
+    
+    .lesson-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 90%;
+        justify-content: center;
+    }
+    
+    section h2 {
+        font-size: 1.6em;
+    }
+    
+    .page-title {
+        font-size: 2em;
+    }
+}
+
+/* ======== SCROLLBAR ======== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-red);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--light-red);
+}
+
+/* ======== SELECTION ======== */
+::selection {
+    background: var(--primary-red);
+    color: var(--text-light);
+}
+
+::-moz-selection {
+    background: var(--primary-red);
+    color: var(--text-light);
+}
+
+/* ======== FOCUS STATES ======== */
+a:focus,
+button:focus,
+.nav-btn:focus,
+.btn:focus {
+    outline: 2px solid var(--primary-red);
+    outline-offset: 2px;
+}
+
+/* ======== PRINT STYLES ======== */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .slide {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .btn, .nav-btn {
+        display: none;
+    }
+}

@@ -3,6 +3,16 @@
 <h2>🧮 Problem Solving Quiz — Repetition & Hamming Codes (20 Items)</h2>
 
 <form id="quizForm">
+    
+    <!-- Student Information -->
+    <div class="quiz-box" style="background: #f0f8ff; color: #000;">
+        <p style="color: #000;"><b>Student Information</b></p>
+        <label for="studentName" style="color: #000;"><b>Name:</b></label>
+        <input type="text" id="studentName" name="studentName" required style="width: 100%; padding: 8px; margin: 5px 0 15px 0; border: 2px solid #ccc; border-radius: 5px; color: #000; background: #fff;">
+        
+        <label for="studentSection" style="color: #000;"><b>Section:</b></label>
+        <input type="text" id="studentSection" name="studentSection" required style="width: 100%; padding: 8px; margin: 5px 0; border: 2px solid #ccc; border-radius: 5px; color: #000; background: #fff;">
+    </div>
 
     <!-- 🧩 Repetition Code Questions -->
     <h3>🔁 Repetition Codes</h3>
@@ -204,6 +214,14 @@
 
 <script>
 function checkAnswers() {
+    const studentName = document.getElementById("studentName").value.trim();
+    const studentSection = document.getElementById("studentSection").value.trim();
+    
+    if (!studentName || !studentSection) {
+        alert("Please enter your Name and Section before submitting!");
+        return;
+    }
+    
     const correct = {
         q1:"A", q2:"B", q3:"B", q4:"A", q5:"A",
         q6:"B", q7:"B", q8:"A", q9:"A", q10:"A",
@@ -212,7 +230,13 @@ function checkAnswers() {
     };
 
     let score = 0;
-    let feedback = "<h3>Results:</h3><ul>";
+    let feedback = `<div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <h3 style="margin: 0 0 10px 0;">Student Information</h3>
+        <p style="margin: 5px 0;"><b>Name:</b> ${studentName}</p>
+        <p style="margin: 5px 0;"><b>Section:</b> ${studentSection}</p>
+    </div>`;
+    
+    feedback += "<h3>Results:</h3><ul>";
 
     for (let key in correct) {
         const selected = document.querySelector(`input[name="${key}"]:checked`);
@@ -221,14 +245,19 @@ function checkAnswers() {
                 score++;
                 feedback += `<li><b>Q${key.substring(1)}:</b> ✅ Correct</li>`;
             } else {
-                feedback += `<li><b>Q${key.substring(1)}:</b> ❌ Wrong</li>`;
+                feedback += `<li><b>Q${key.substring(1)}:</b> ❌ Wrong (Correct answer: ${correct[key]})</li>`;
             }
         } else {
             feedback += `<li><b>Q${key.substring(1)}:</b> ⚠️ Not answered</li>`;
         }
     }
 
-    feedback += `</ul><h3>Your Score: ${score}/20</h3>`;
+    feedback += `</ul>`;
+    feedback += `<div style="background: #4caf50; color: white; padding: 20px; border-radius: 8px; text-align: center; margin-top: 20px;">
+        <h2 style="margin: 0;">Your Score: ${score}/20</h2>
+        <p style="margin: 10px 0 0 0; font-size: 18px;">Percentage: ${(score/20*100).toFixed(1)}%</p>
+    </div>`;
+    
     document.getElementById("quizResult").innerHTML = feedback;
 }
 </script>

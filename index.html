@@ -122,16 +122,228 @@
         <h2 class="page-title">Theory & Fundamentals</h2>
         <p style="text-align:center; color: var(--text-muted); margin-bottom: 40px;">Understanding the mathematical foundations of error detection and correction</p>
         
-        <!-- Content from theory.php goes here - truncated for brevity -->
         <div class="theory-content">
             <p style="color: var(--text-muted); font-size: 1.1em; line-height: 1.7; text-align: center; margin: 40px auto; max-width: 800px;">
                 In digital communication, data is transmitted as binary digits (0s and 1s). External factors like noise can corrupt some bits.
                 Error detection and correction codes help identify and fix these errors, ensuring reliable data transmission.
             </p>
             
-            <div class="lesson-buttons" style="margin: 40px 0;">
-                <button class="btn" onclick="showSection('examples')">Learn Hamming Code</button>
-                <button class="btn" onclick="showSection('examples')">Learn Repetition Code</button>
+            <div class="lesson-buttons" style="margin: 40px 0; text-align: center;">
+                <button class="btn" onclick="showLesson('hamming')" style="margin: 10px;">Learn Hamming Code</button>
+                <button class="btn" onclick="showLesson('repetition')" style="margin: 10px;">Learn Repetition Code</button>
+            </div>
+
+            <!-- Hamming Code Lesson -->
+            <div id="hamming-lesson" class="lesson-content" style="display:none;">
+                <h2 style="text-align:center; margin: 30px 0;">Hamming Code Lesson</h2>
+                
+                <div class="slide active" id="hamming-slide1">
+                    <h3>What is a Hamming Code?</h3>
+                    <p>Hamming code is a linear code that is useful for error detection up to two immediate bit errors. It is capable of correcting single-bit errors.</p>
+                </div>
+
+                <div class="slide" id="hamming-slide2" style="display:none;">
+                    <h3>History of Hamming Code</h3>
+                    <ul>
+                        <li>Hamming code is a technique built by R.W. Hamming to detect errors.</li>
+                        <li>It applies to data units of any length and uses the relationship between data and redundancy bits.</li>
+                        <li>He worked on the problem of error-correction methods and developed powerful algorithms called Hamming codes.</li>
+                        <li>In 1950, he published the Hamming Code, which is widely used today in applications like ECC memory.</li>
+                    </ul>
+                </div>
+
+                <div class="slide" id="hamming-slide3" style="display:none;">
+                    <h3>Applications of Hamming Code</h3>
+                    <ul>
+                        <li>Satellites</li>
+                        <li>Computer Memory</li>
+                        <li>Modems</li>
+                        <li>PlasmaCAM</li>
+                        <li>Open Connectors</li>
+                    </ul>
+                </div>
+
+                <div class="slide" id="hamming-slide4" style="display:none;">
+                    <h3>Process of Encoding a Message Using Hamming Code</h3>
+                    <p>The process used by the sender to encode the message includes the following steps:</p>
+                    <ul>
+                        <li>Calculation of total number of redundant bits</li>
+                        <li>Checking the position of the redundant bits</li>
+                        <li>Calculating the values of the redundant bits</li>
+                    </ul>
+                </div>
+
+                <div class="slide" id="hamming-slide5" style="display:none;">
+                    <h3>Step 1: Total Number of Redundant Bits</h3>
+                    <p>Let the message contain:</p>
+                    <ul>
+                        <li><b>n</b> – number of data bits</li>
+                        <li><b>p</b> – number of redundant bits added so that it can indicate at least (n + p + 1) different states.</li>
+                    </ul>
+                    <p>(n + p) depicts the location of an error in each of (n + p) bit positions, and one extra state means no error. Since p bits indicate 2<sup>p</sup> states, 2<sup>p</sup> must be at least equal to (n + p + 1).</p>
+                </div>
+
+                <div class="slide" id="hamming-slide6" style="display:none;">
+                    <h3>Step 2: Placing the Redundant Bits</h3>
+                    <p>The redundant bits should be placed in bit positions of powers of 2.</p>
+                    <ul>
+                        <li>For example: 1, 2, 4, 8, 16, etc.</li>
+                        <li>They are referred to as p1 (position 1), p2 (position 2), p3 (position 4), etc.</li>
+                    </ul>
+                </div>
+
+                <div class="slide" id="hamming-slide7" style="display:none;">
+                    <h3>Step 3: Calculating Values of Redundant Bits</h3>
+                    <p>The redundant bits should be parity bits that make the number of 1s either even or odd.</p>
+                    <p><b>Types of Parity:</b></p>
+                    <ul>
+                        <li>Even Parity – total number of 1s in the message is made even.</li>
+                        <li>Odd Parity – total number of 1s in the message is made odd.</li>
+                    </ul>
+                </div>
+
+                <div class="slide" id="hamming-slide8" style="display:none;">
+                    <h3>Calculating Parity Bits (p1, p2, p3, ...)</h3>
+                    <p>All redundant bits (p1, p2, p3, ...) are calculated as parity bits. Each parity bit covers specific positions based on binary representation.</p>
+                    <ul>
+                        <li><b>P1</b> – Covers all bit positions whose binary representation includes 1 in the 1st position (excluding position of p1). Example: 3, 5, 7, 9...</li>
+                        <li><b>P2</b> – Covers positions that include 1 in the 2nd bit from right (excluding position of p2). Example: 3, 6, 7, 10, 11...</li>
+                        <li><b>P3</b> – Covers positions that include 1 in the 3rd bit from right (excluding position of p3). Example: 5–7, 12–15...</li>
+                    </ul>
+                </div>
+
+                <div class="slide" id="hamming-slide9" style="display:none;">
+                    <h3>Process of Decrypting a Message in Hamming Code</h3>
+                    <p>Receiver gets incoming messages which require recalculations to find and correct errors. The process includes:</p>
+                    <ul>
+                        <li>Counting the number of redundant bits</li>
+                        <li>Correctly positioning all redundant bits</li>
+                        <li>Performing parity check</li>
+                    </ul>
+                </div>
+
+                <div class="slide" id="hamming-slide10" style="display:none;">
+                    <h3>Step 1: Counting the Number of Redundant Bits</h3>
+                    <p>You can use the same formula for encoding:</p>
+                    <p><b>2<sup>p</sup> ≥ n + p + 1</b></p>
+                    <p>Here, n = number of data bits and p = number of redundant bits.</p>
+
+                    <h3>Step 2: Correctly Positioning Redundant Bits</h3>
+                    <p>Each redundant bit is located at bit positions that are powers of 2 (1, 2, 4, 8, etc.).</p>
+                </div>
+
+                <div class="slide" id="hamming-slide11" style="display:none;">
+                    <h3>Step 3: Parity Check</h3>
+                    <p>Parity bits are recalculated based on data bits and redundant bits:</p>
+                    <ul>
+                        <li>p1 = parity(1, 3, 5, 7, 9, 11…)</li>
+                        <li>p2 = parity(2-3, 6-7, 10-11…)</li>
+                        <li>p4 = parity(4-7, 12-15, 20-23…)</li>
+                        <li>p8 = parity(8-15, 24-31…)</li>
+                    </ul>
+                </div>
+
+                <div class="navigation" style="text-align: center; margin: 30px 0;">
+                    <button class="nav-btn" onclick="prevSlide('hamming')">Previous</button>
+                    <button class="nav-btn" onclick="nextSlide('hamming')">Next</button>
+                    <button class="btn" onclick="hideLesson()" style="margin-left: 20px;">Back to Theory</button>
+                </div>
+            </div>
+
+            <!-- Repetition Code Lesson -->
+            <div id="repetition-lesson" class="lesson-content" style="display:none;">
+                <h2 style="text-align:center; margin: 30px 0;">Repetition Code Lesson</h2>
+                
+                <div class="slide active" id="repetition-slide1">
+                    <h3>What is a Repetition Code?</h3>
+                    <p>Repetition codes are one of the simplest types of error detection and correction codes used in digital communication systems.</p>
+                    <div class="example-box">
+                        <p><b>Definition:</b></p>
+                        <p>A repetition code works by repeating each bit of data multiple times to help detect and possibly correct errors that occur during transmission.</p>
+                    </div>
+                    <p>It is one of the most basic error-correcting codes used to increase reliability in communication systems.</p>
+                </div>
+
+                <div class="slide" id="repetition-slide2" style="display:none;">
+                    <h3>Concept of Repetition Code</h3>
+                    <p>Repetition coding ensures data accuracy by transmitting each bit several times. If an error occurs during transmission, the receiver uses majority voting to determine the original bit value.</p>
+                </div>
+
+                <div class="slide" id="repetition-slide3" style="display:none;">
+                    <h3>Repetition Code Formula</h3>
+                    <p>The formula to determine how many times each bit should be repeated is:</p>
+                    <div class="example-box">
+                        <p><b>Formula:</b> k = 2r + 1</p>
+                        <p>Where <b>r</b> is the number of redundant bits added for error correction.</p>
+                    </div>
+                </div>
+
+                <div class="slide" id="repetition-slide4" style="display:none;">
+                    <h3>Example 1: Encoding Process</h3>
+                    <p>Suppose the source message is <b>101</b>. If <b>r = 2</b>, what will be the transmitted message using repetition coding?</p>
+                    <p><b>Solution:</b></p>
+                    <p>k = 2r + 1</p>
+                    <p>k = 2(2) + 1 = <b>5</b></p>
+                    <p><b>Step 1:</b> Repeat each bit 5 times:</p>
+                    <ul>
+                        <li>1 → 11111</li>
+                        <li>0 → 00000</li>
+                        <li>1 → 11111</li>
+                    </ul>
+                    <p><b>Step 2:</b> Combine all groups:</p>
+                    <p><b>Resulting Message:</b> 111110000011111</p>
+                </div>
+
+                <div class="slide" id="repetition-slide5" style="display:none;">
+                    <h3>Example 2: Transmission with Error</h3>
+                    <p>The encoded message <b>11111 00000 11111</b> was transmitted, but due to noise, it was received as <b>111100000011101</b>. If <b>r = 2</b>, find the original source message.</p>
+                    <p><b>Step 1:</b> Group bits into sets of 5 (since r = 2 → k = 5):</p>
+                    <p>Groups: (11110) (00000) (11101)</p>
+                    <p><b>Step 2:</b> Apply majority voting for each group:</p>
+                    <ul>
+                        <li>11110 → 1's = 4 → <b>1</b></li>
+                        <li>00000 → 0's = 5 → <b>0</b></li>
+                        <li>11101 → 1's = 4 → <b>1</b></li>
+                    </ul>
+                    <p><b>Step 3:</b> Decoded message = <b>101</b></p>
+                </div>
+
+                <div class="slide" id="repetition-slide6" style="display:none;">
+                    <h3>Example 3: Larger Bit Sequence (Question)</h3>
+                    <p>Suppose the source encoded message is <b>0110</b>. If <b>r = 3</b>, what will be the transmitted message using repetition coding?</p>
+                    <p><b>Formula:</b> k = 2r + 1</p>
+                    <p><b>Next Page:</b> What will be the original message if it has a transmission error?</p>
+                </div>
+
+                <div class="slide" id="repetition-slide7" style="display:none;">
+                    <h3>Example 3: Larger Bit Sequence (Solution with Noise)</h3>
+                    <p><b>Given:</b> Message = 0110, r = 3</p>
+                    <p><b>Step 1:</b> Compute repetition factor: k = 2r + 1 = 2(3) + 1 = <b>7</b></p>
+                    <p><b>Step 2:</b> Repeat each bit 7 times:</p>
+                    <pre style="background: #2d2d2d; padding: 15px; border-radius: 8px; color: #fff;">
+0 → 0000000
+1 → 1111111
+1 → 1111111
+0 → 0000000</pre>
+                    <p><b>Transmitted Message:</b> 0000000111111111111110000000</p>
+                    <p><b>Step 3:</b> Suppose noise occurred and the received message was:</p>
+                    <p><b>Received:</b> 0010100110111110111110001000</p>
+                    <p><b>Step 4:</b> Group bits into 7-bit sets and apply majority voting:</p>
+                    <table border="1" cellpadding="6" style="margin: 20px auto; border-collapse: collapse;">
+                        <tr style="background: #a00000; color: white;"><th>Group</th><th>Bits</th><th>Majority</th><th>Decoded</th></tr>
+                        <tr><td>1</td><td>0010100</td><td>0's = 5, 1's = 2</td><td><b>0</b></td></tr>
+                        <tr><td>2</td><td>1101111</td><td>1's = 6, 0's = 1</td><td><b>1</b></td></tr>
+                        <tr><td>3</td><td>1011111</td><td>1's = 6, 0's = 1</td><td><b>1</b></td></tr>
+                        <tr><td>4</td><td>0001000</td><td>0's = 6, 1's = 1</td><td><b>0</b></td></tr>
+                    </table>
+                    <p><b>Decoded Message:</b> 0110 ✅ (original recovered successfully)</p>
+                </div>
+
+                <div class="navigation" style="text-align: center; margin: 30px 0;">
+                    <button class="nav-btn" onclick="prevSlide('repetition')">Previous</button>
+                    <button class="nav-btn" onclick="nextSlide('repetition')">Next</button>
+                    <button class="btn" onclick="hideLesson()" style="margin-left: 20px;">Back to Theory</button>
+                </div>
             </div>
         </div>
     </div>
@@ -484,6 +696,71 @@ function demonstrateRepetition() {
 
 function demonstrateHamming() {
     alert("Hamming Code Demo:\n\nData: 1011\nParity bits at positions: 1, 2, 4\n\nEncoded: 1011010\n\nThis adds error correction capability!");
+}
+
+// Lesson slide navigation
+let currentSlideIndex = {
+    hamming: 1,
+    repetition: 1
+};
+
+const totalSlides = {
+    hamming: 11,
+    repetition: 7
+};
+
+function showLesson(lessonType) {
+    // Hide both lessons first
+    document.getElementById('hamming-lesson').style.display = 'none';
+    document.getElementById('repetition-lesson').style.display = 'none';
+    
+    // Show selected lesson
+    document.getElementById(lessonType + '-lesson').style.display = 'block';
+    
+    // Reset to first slide
+    currentSlideIndex[lessonType] = 1;
+    showSlideByType(lessonType, 1);
+}
+
+function hideLesson() {
+    document.getElementById('hamming-lesson').style.display = 'none';
+    document.getElementById('repetition-lesson').style.display = 'none';
+}
+
+function showSlideByType(lessonType, n) {
+    const total = totalSlides[lessonType];
+    
+    // Hide all slides of this lesson type
+    for (let i = 1; i <= total; i++) {
+        const slide = document.getElementById(lessonType + '-slide' + i);
+        if (slide) {
+            slide.classList.remove('active');
+            slide.style.display = 'none';
+        }
+    }
+    
+    // Show the selected slide
+    const activeSlide = document.getElementById(lessonType + '-slide' + n);
+    if (activeSlide) {
+        activeSlide.style.display = 'block';
+        setTimeout(() => {
+            activeSlide.classList.add('active');
+        }, 10);
+    }
+}
+
+function nextSlide(lessonType) {
+    if (currentSlideIndex[lessonType] < totalSlides[lessonType]) {
+        currentSlideIndex[lessonType]++;
+        showSlideByType(lessonType, currentSlideIndex[lessonType]);
+    }
+}
+
+function prevSlide(lessonType) {
+    if (currentSlideIndex[lessonType] > 1) {
+        currentSlideIndex[lessonType]--;
+        showSlideByType(lessonType, currentSlideIndex[lessonType]);
+    }
 }
 
 // Quiz Function with animations
@@ -967,6 +1244,101 @@ nav a.active::after {
     height: 40px;
     animation: spin 1s linear infinite;
     margin: 20px auto;
+}
+
+/* Lesson slides styling */
+.lesson-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.slide {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 15px;
+    border: 2px solid rgba(160, 0, 0, 0.3);
+    min-height: 400px;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.5s ease-out;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide h3 {
+    color: #ff6b6b;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.slide ul {
+    line-height: 2;
+    color: var(--text-muted);
+}
+
+.slide p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin: 15px 0;
+}
+
+.slide pre {
+    background: #2d2d2d;
+    padding: 15px;
+    border-radius: 8px;
+    color: #fff;
+    overflow-x: auto;
+}
+
+.slide table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.slide table th,
+.slide table td {
+    padding: 12px;
+    border: 1px solid rgba(160, 0, 0, 0.3);
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.slide table th {
+    background: rgba(160, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+.nav-btn {
+    background: #a00000;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: #cc0000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(160, 0, 0, 0.4);
+}
+
+.nav-btn:active {
+    transform: translateY(0);
+}
+
+.lesson-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 </style>
 

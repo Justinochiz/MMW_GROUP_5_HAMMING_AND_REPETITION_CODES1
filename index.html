@@ -922,7 +922,7 @@ function addTooltips() {
 // Progress indicator
 function updateProgress() {
     const answeredQuestions = document.querySelectorAll('input[type="radio"]:checked').length;
-    const totalQuestions = 2; // Update this to 20 when all questions are added
+    const totalQuestions = 20;
     const progress = (answeredQuestions / totalQuestions) * 100;
     
     let progressBar = document.getElementById('quiz-progress');

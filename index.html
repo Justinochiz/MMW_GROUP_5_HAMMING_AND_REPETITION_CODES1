@@ -204,7 +204,172 @@
                 <label><input type="radio" name="q2" value="D"> 011</label>
             </div>
 
-            <!-- Add remaining questions 3-20 here (truncated for brevity) -->
+            <!-- Q3 -->
+            <div class="quiz-box">
+                <p><b>3.</b> If <b>r = 4</b> in a Repetition Code, how many total bits <b>k</b> are transmitted for one message bit?</p>
+                <label><input type="radio" name="q3" value="A"> 4</label><br>
+                <label><input type="radio" name="q3" value="B"> 5</label><br>
+                <label><input type="radio" name="q3" value="C"> 6</label><br>
+                <label><input type="radio" name="q3" value="D"> 8</label>
+            </div>
+
+            <!-- Q4 -->
+            <div class="quiz-box">
+                <p><b>4.</b> A received message is <b>000 111 111</b> with <b>r=3</b>. What is the most likely original message?</p>
+                <label><input type="radio" name="q4" value="A"> 101</label><br>
+                <label><input type="radio" name="q4" value="B"> 011</label><br>
+                <label><input type="radio" name="q4" value="C"> 001</label><br>
+                <label><input type="radio" name="q4" value="D"> 111</label>
+            </div>
+
+            <!-- Q5 -->
+            <div class="quiz-box">
+                <p><b>5.</b> In a 5-time repetition code, if one bit flips due to noise, can the receiver still detect and correct the error?</p>
+                <label><input type="radio" name="q5" value="A"> Yes, using majority voting</label><br>
+                <label><input type="radio" name="q5" value="B"> No, it cannot detect it</label><br>
+                <label><input type="radio" name="q5" value="C"> Only detect, not correct</label><br>
+                <label><input type="radio" name="q5" value="D"> None of the above</label>
+            </div>
+
+            <!-- Q6 -->
+            <div class="quiz-box">
+                <p><b>6.</b> For <b>r = 2</b>, what is the redundancy percentage in the transmitted data?</p>
+                <label><input type="radio" name="q6" value="A"> 50%</label><br>
+                <label><input type="radio" name="q6" value="B"> 100%</label><br>
+                <label><input type="radio" name="q6" value="C"> 200%</label><br>
+                <label><input type="radio" name="q6" value="D"> 300%</label>
+            </div>
+
+            <!-- Q7 -->
+            <div class="quiz-box">
+                <p><b>7.</b> A Repetition Code is primarily used to:</p>
+                <label><input type="radio" name="q7" value="A"> Compress data</label><br>
+                <label><input type="radio" name="q7" value="B"> Detect and correct errors</label><br>
+                <label><input type="radio" name="q7" value="C"> Increase speed</label><br>
+                <label><input type="radio" name="q7" value="D"> Encrypt data</label>
+            </div>
+
+            <!-- Q8 -->
+            <div class="quiz-box">
+                <p><b>8.</b> If message = <b>10</b> and <b>r = 3</b>, transmitted code = ?</p>
+                <label><input type="radio" name="q8" value="A"> 111000</label><br>
+                <label><input type="radio" name="q8" value="B"> 100100</label><br>
+                <label><input type="radio" name="q8" value="C"> 101010</label><br>
+                <label><input type="radio" name="q8" value="D"> 110110</label>
+            </div>
+
+            <!-- Q9 -->
+            <div class="quiz-box">
+                <p><b>9.</b> A 3-bit message <b>101</b> is sent using a Repetition Code with <b>r = 3</b>. The transmitted message is:</p>
+                <pre><code>Message: 101</code></pre>
+                <p>Which of the following is the correct transmitted code?</p>
+                <label><input type="radio" name="q9" value="A"> 111000111</label><br>
+                <label><input type="radio" name="q9" value="B"> 101101101</label><br>
+                <label><input type="radio" name="q9" value="C"> 110110110</label><br>
+                <label><input type="radio" name="q9" value="D"> 100100100</label>
+            </div>
+
+            <!-- Q10 -->
+            <div class="quiz-box">
+                <p><b>10.</b> If the transmitted repetition code is <b>111000111</b> and received as <b>110000111</b>, what is the corrected bit sequence?</p>
+                <label><input type="radio" name="q10" value="A"> 111000111</label><br>
+                <label><input type="radio" name="q10" value="B"> 110000111</label><br>
+                <label><input type="radio" name="q10" value="C"> 100000111</label><br>
+                <label><input type="radio" name="q10" value="D"> 111111111</label>
+            </div>
+
+            <!-- Hamming Code Questions -->
+            <h3>💡 Hamming Codes</h3>
+
+            <!-- Q11 -->
+            <div class="quiz-box">
+                <p><b>11.</b> Hamming(7,4) adds how many redundant bits to 4 data bits?</p>
+                <label><input type="radio" name="q11" value="A"> 2</label><br>
+                <label><input type="radio" name="q11" value="B"> 3</label><br>
+                <label><input type="radio" name="q11" value="C"> 4</label><br>
+                <label><input type="radio" name="q11" value="D"> 5</label>
+            </div>
+
+            <!-- Q12 -->
+            <div class="quiz-box">
+                <p><b>12.</b> If a Hamming(7,4) code receives <b>1011010</b> and error is in bit 3, what's the corrected code?</p>
+                <label><input type="radio" name="q12" value="A"> 1010010</label><br>
+                <label><input type="radio" name="q12" value="B"> 1111010</label><br>
+                <label><input type="radio" name="q12" value="C"> 1001010</label><br>
+                <label><input type="radio" name="q12" value="D"> 1011110</label>
+            </div>
+
+            <!-- Q13 -->
+            <div class="quiz-box">
+                <p><b>13.</b> Hamming Code can detect and correct:</p>
+                <label><input type="radio" name="q13" value="A"> 2 errors</label><br>
+                <label><input type="radio" name="q13" value="B"> 1 error</label><br>
+                <label><input type="radio" name="q13" value="C"> 3 errors</label><br>
+                <label><input type="radio" name="q13" value="D"> All errors</label>
+            </div>
+
+            <!-- Q14 -->
+            <div class="quiz-box">
+                <p><b>14.</b> What is the purpose of parity bits in Hamming Code?</p>
+                <label><input type="radio" name="q14" value="A"> To store extra messages</label><br>
+                <label><input type="radio" name="q14" value="B"> To detect/correct errors</label><br>
+                <label><input type="radio" name="q14" value="C"> To increase data rate</label><br>
+                <label><input type="radio" name="q14" value="D"> To compress data</label>
+            </div>
+
+            <!-- Q15 -->
+            <div class="quiz-box">
+                <p><b>15.</b> If error pattern = <b>011</b>, which bit has error?</p>
+                <label><input type="radio" name="q15" value="A"> 2</label><br>
+                <label><input type="radio" name="q15" value="B"> 3</label><br>
+                <label><input type="radio" name="q15" value="C"> 4</label><br>
+                <label><input type="radio" name="q15" value="D"> 6</label>
+            </div>
+
+            <!-- Q16 -->
+            <div class="quiz-box">
+                <p><b>16.</b> In Hamming(7,4), how many total bits are transmitted?</p>
+                <label><input type="radio" name="q16" value="A"> 7</label><br>
+                <label><input type="radio" name="q16" value="B"> 8</label><br>
+                <label><input type="radio" name="q16" value="C"> 6</label><br>
+                <label><input type="radio" name="q16" value="D"> 9</label>
+            </div>
+
+            <!-- Q17 -->
+            <div class="quiz-box">
+                <p><b>17.</b> If no error is detected, the syndrome bits in Hamming Code are:</p>
+                <label><input type="radio" name="q17" value="A"> 000</label><br>
+                <label><input type="radio" name="q17" value="B"> 111</label><br>
+                <label><input type="radio" name="q17" value="C"> 010</label><br>
+                <label><input type="radio" name="q17" value="D"> 001</label>
+            </div>
+
+            <!-- Q18 -->
+            <div class="quiz-box">
+                <p><b>18.</b> Hamming codes use parity bits located at:</p>
+                <label><input type="radio" name="q18" value="A"> Positions 1, 2, 4</label><br>
+                <label><input type="radio" name="q18" value="B"> Positions 2, 3, 5</label><br>
+                <label><input type="radio" name="q18" value="C"> Positions 1, 3, 7</label><br>
+                <label><input type="radio" name="q18" value="D"> Positions 1, 2, 3</label>
+            </div>
+
+            <!-- Q19 -->
+            <div class="quiz-box">
+                <p><b>19.</b> What does a syndrome value of <b>101</b> indicate?</p>
+                <label><input type="radio" name="q19" value="A"> Error at bit 5</label><br>
+                <label><input type="radio" name="q19" value="B"> Error at bit 1</label><br>
+                <label><input type="radio" name="q19" value="C"> Error at bit 3</label><br>
+                <label><input type="radio" name="q19" value="D"> No error</label>
+            </div>
+
+            <!-- Q20 -->
+            <div class="quiz-box">
+                <p><b>20.</b> Hamming(7,4) is a type of:</p>
+                <label><input type="radio" name="q20" value="A"> Block code</label><br>
+                <label><input type="radio" name="q20" value="B"> Cyclic code</label><br>
+                <label><input type="radio" name="q20" value="C"> Linear block code</label><br>
+                <label><input type="radio" name="q20" value="D"> Parity check code</label>
+            </div>
             
             <button type="button" class="btn" onclick="checkAnswers()">Submit Answers</button>
         </form>
@@ -332,7 +497,10 @@ function checkAnswers() {
     }
     
     const correct = {
-        q1:"A", q2:"B"
+        q1:"A", q2:"B", q3:"B", q4:"A", q5:"A",
+        q6:"B", q7:"B", q8:"A", q9:"A", q10:"A",
+        q11:"B", q12:"A", q13:"B", q14:"B", q15:"B",
+        q16:"A", q17:"A", q18:"A", q19:"A", q20:"C"
     };
 
     let score = 0;
@@ -358,7 +526,7 @@ function checkAnswers() {
         }
     }
 
-    const percentage = (score/2*100).toFixed(1);
+    const percentage = (score/20*100).toFixed(1);
     let gradeMessage = "";
     if (percentage >= 90) gradeMessage = "🌟 Excellent!";
     else if (percentage >= 80) gradeMessage = "👍 Great job!";
@@ -367,7 +535,7 @@ function checkAnswers() {
 
     feedback += `</ul>`;
     feedback += `<div style="background: linear-gradient(135deg, #4caf50, #45a049); color: white; padding: 30px; border-radius: 15px; text-align: center; margin-top: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); animation: scaleIn 0.5s ease-out;">
-        <h2 style="margin: 0 0 15px 0; font-size: 2.5em;">🎯 ${score}/2</h2>
+        <h2 style="margin: 0 0 15px 0; font-size: 2.5em;">🎯 ${score}/20</h2>
         <p style="margin: 10px 0; font-size: 1.5em;">${percentage}%</p>
         <p style="margin: 15px 0 0 0; font-size: 1.8em;">${gradeMessage}</p>
     </div>`;

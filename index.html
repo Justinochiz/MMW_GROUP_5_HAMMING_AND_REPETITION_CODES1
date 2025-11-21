@@ -264,21 +264,29 @@
 </footer>
 
 <script>
-// Page Navigation
+// Page Navigation with smooth animations
 function showSection(sectionId) {
     const sections = document.querySelectorAll('.page-section');
     sections.forEach(section => {
-        section.style.display = 'none';
-        section.classList.remove('active');
+        section.style.opacity = '0';
+        setTimeout(() => {
+            section.style.display = 'none';
+            section.classList.remove('active');
+        }, 300);
     });
     
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        targetSection.style.display = 'block';
-        targetSection.classList.add('active');
-    }
+    setTimeout(() => {
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.style.display = 'block';
+            setTimeout(() => {
+                targetSection.style.opacity = '1';
+                targetSection.classList.add('active');
+            }, 50);
+        }
+    }, 300);
     
-    // Update active nav link
+    // Update active nav link with animation
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
         link.classList.remove('active');
@@ -287,55 +295,221 @@ function showSection(sectionId) {
         }
     });
     
-    // Scroll to top
-    window.scrollTo(0, 0);
+    // Scroll to top smoothly
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Quiz Function
+// Interactive code demonstration
+function demonstrateRepetition() {
+    const message = prompt("Enter a binary message (e.g., 101):", "101");
+    if (!message) return;
+    
+    const r = parseInt(prompt("Enter repetition factor r:", "3"));
+    if (isNaN(r)) return;
+    
+    const k = 2 * r + 1;
+    let transmitted = "";
+    
+    for (let bit of message) {
+        transmitted += bit.repeat(k) + " ";
+    }
+    
+    alert(`Input: ${message}\nRepetition factor (r): ${r}\nk = 2r + 1 = ${k}\n\nTransmitted: ${transmitted.trim()}`);
+}
+
+function demonstrateHamming() {
+    alert("Hamming Code Demo:\n\nData: 1011\nParity bits at positions: 1, 2, 4\n\nEncoded: 1011010\n\nThis adds error correction capability!");
+}
+
+// Quiz Function with animations
 function checkAnswers() {
     const studentName = document.getElementById("studentName").value.trim();
     const studentSection = document.getElementById("studentSection").value.trim();
     
     if (!studentName || !studentSection) {
-        alert("Please enter your Name and Section before submitting!");
+        showNotification("Please enter your Name and Section before submitting!", "warning");
         return;
     }
     
     const correct = {
         q1:"A", q2:"B"
-        // Add all 20 answers here
     };
 
     let score = 0;
-    let feedback = `<div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-        <h3 style="margin: 0 0 10px 0;">Student Information</h3>
-        <p style="margin: 5px 0;"><b>Name:</b> ${studentName}</p>
-        <p style="margin: 5px 0;"><b>Section:</b> ${studentSection}</p>
+    let feedback = `<div style="background: linear-gradient(135deg, #e3f2fd, #bbdefb); padding: 20px; border-radius: 12px; margin-bottom: 25px; animation: slideIn 0.5s ease-out;">
+        <h3 style="margin: 0 0 15px 0; color: #1565c0;">📋 Student Information</h3>
+        <p style="margin: 5px 0; color: #0d47a1;"><b>Name:</b> ${studentName}</p>
+        <p style="margin: 5px 0; color: #0d47a1;"><b>Section:</b> ${studentSection}</p>
     </div>`;
     
-    feedback += "<h3>Results:</h3><ul>";
+    feedback += "<h3 style='color: #fff;'>📊 Results:</h3><ul style='list-style: none; padding: 0;'>";
 
     for (let key in correct) {
         const selected = document.querySelector(`input[name="${key}"]:checked`);
         if (selected) {
             if (selected.value === correct[key]) {
                 score++;
-                feedback += `<li><b>Q${key.substring(1)}:</b> ✅ Correct</li>`;
+                feedback += `<li style="padding: 10px; margin: 8px 0; background: rgba(76, 175, 80, 0.2); border-left: 4px solid #4caf50; border-radius: 8px; animation: slideIn 0.3s ease-out;"><b>Q${key.substring(1)}:</b> ✅ Correct</li>`;
             } else {
-                feedback += `<li><b>Q${key.substring(1)}:</b> ❌ Wrong</li>`;
+                feedback += `<li style="padding: 10px; margin: 8px 0; background: rgba(244, 67, 54, 0.2); border-left: 4px solid #f44336; border-radius: 8px; animation: slideIn 0.3s ease-out;"><b>Q${key.substring(1)}:</b> ❌ Wrong</li>`;
             }
         } else {
-            feedback += `<li><b>Q${key.substring(1)}:</b> ⚠️ Not answered</li>`;
+            feedback += `<li style="padding: 10px; margin: 8px 0; background: rgba(255, 193, 7, 0.2); border-left: 4px solid #ffc107; border-radius: 8px; animation: slideIn 0.3s ease-out;"><b>Q${key.substring(1)}:</b> ⚠️ Not answered</li>`;
         }
     }
 
+    const percentage = (score/2*100).toFixed(1);
+    let gradeMessage = "";
+    if (percentage >= 90) gradeMessage = "🌟 Excellent!";
+    else if (percentage >= 80) gradeMessage = "👍 Great job!";
+    else if (percentage >= 70) gradeMessage = "👌 Good work!";
+    else gradeMessage = "📚 Keep studying!";
+
     feedback += `</ul>`;
-    feedback += `<div style="background: #4caf50; color: white; padding: 20px; border-radius: 8px; text-align: center; margin-top: 20px;">
-        <h2 style="margin: 0;">Your Score: ${score}/20</h2>
-        <p style="margin: 10px 0 0 0; font-size: 18px;">Percentage: ${(score/20*100).toFixed(1)}%</p>
+    feedback += `<div style="background: linear-gradient(135deg, #4caf50, #45a049); color: white; padding: 30px; border-radius: 15px; text-align: center; margin-top: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); animation: scaleIn 0.5s ease-out;">
+        <h2 style="margin: 0 0 15px 0; font-size: 2.5em;">🎯 ${score}/2</h2>
+        <p style="margin: 10px 0; font-size: 1.5em;">${percentage}%</p>
+        <p style="margin: 15px 0 0 0; font-size: 1.8em;">${gradeMessage}</p>
     </div>`;
     
-    document.getElementById("quizResult").innerHTML = feedback;
+    const resultBox = document.getElementById("quizResult");
+    resultBox.innerHTML = feedback;
+    resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    // Confetti effect for high scores
+    if (percentage >= 80) {
+        createConfetti();
+    }
+}
+
+// Notification system
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = 'notification ' + type;
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 20px 30px;
+        background: ${type === 'warning' ? '#ff9800' : '#2196F3'};
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        z-index: 10000;
+        animation: slideInRight 0.5s ease-out;
+        font-weight: 600;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.5s ease-out';
+        setTimeout(() => notification.remove(), 500);
+    }, 3000);
+}
+
+// Confetti effect
+function createConfetti() {
+    for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.cssText = `
+                position: fixed;
+                width: 10px;
+                height: 10px;
+                background: ${['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'][Math.floor(Math.random() * 5)]};
+                left: ${Math.random() * 100}vw;
+                top: -10px;
+                opacity: ${Math.random()};
+                transform: rotate(${Math.random() * 360}deg);
+                animation: fall ${2 + Math.random() * 3}s linear;
+                z-index: 9999;
+            `;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }, i * 30);
+    }
+}
+
+// Scroll animations
+function handleScroll() {
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+            el.classList.add('visible');
+        }
+    });
+}
+
+// Interactive hover tooltips
+function addTooltips() {
+    const tooltipElements = document.querySelectorAll('[data-tooltip]');
+    tooltipElements.forEach(el => {
+        el.addEventListener('mouseenter', (e) => {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'custom-tooltip';
+            tooltip.textContent = el.getAttribute('data-tooltip');
+            tooltip.style.cssText = `
+                position: absolute;
+                background: #333;
+                color: white;
+                padding: 8px 12px;
+                border-radius: 6px;
+                font-size: 14px;
+                z-index: 10000;
+                pointer-events: none;
+                animation: fadeIn 0.3s ease-out;
+            `;
+            document.body.appendChild(tooltip);
+            
+            const rect = el.getBoundingClientRect();
+            tooltip.style.top = (rect.top - tooltip.offsetHeight - 10) + 'px';
+            tooltip.style.left = (rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
+            
+            el.addEventListener('mouseleave', () => tooltip.remove(), { once: true });
+        });
+    });
+}
+
+// Progress indicator
+function updateProgress() {
+    const answeredQuestions = document.querySelectorAll('input[type="radio"]:checked').length;
+    const totalQuestions = 2; // Update this to 20 when all questions are added
+    const progress = (answeredQuestions / totalQuestions) * 100;
+    
+    let progressBar = document.getElementById('quiz-progress');
+    if (!progressBar && document.getElementById('quizForm')) {
+        progressBar = document.createElement('div');
+        progressBar.id = 'quiz-progress';
+        progressBar.style.cssText = `
+            position: sticky;
+            top: 60px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        `;
+        progressBar.innerHTML = `
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span style="color: #333; font-weight: 600;">Progress</span>
+                <span style="color: #333; font-weight: 600;" id="progress-text">0/${totalQuestions}</span>
+            </div>
+            <div style="background: #e0e0e0; height: 8px; border-radius: 4px; overflow: hidden;">
+                <div id="progress-fill" style="background: linear-gradient(90deg, #4caf50, #45a049); height: 100%; width: 0%; transition: width 0.3s ease;"></div>
+            </div>
+        `;
+        document.getElementById('quizForm').insertBefore(progressBar, document.getElementById('quizForm').firstChild);
+    }
+    
+    if (progressBar) {
+        document.getElementById('progress-fill').style.width = progress + '%';
+        document.getElementById('progress-text').textContent = `${answeredQuestions}/${totalQuestions}`;
+    }
 }
 
 // Initialize
@@ -348,15 +522,48 @@ document.addEventListener('DOMContentLoaded', function() {
         const section = window.location.hash.substring(1);
         showSection(section);
     }
+    
+    // Add scroll animations
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    
+    // Add tooltips
+    addTooltips();
+    
+    // Track quiz progress
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', updateProgress);
+    });
+    
+    // Add typing effect to hero title
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+        let i = 0;
+        const typeWriter = setInterval(() => {
+            if (i < text.length) {
+                heroTitle.textContent += text.charAt(i);
+                i++;
+            } else {
+                clearInterval(typeWriter);
+            }
+        }, 50);
+    }
+    
+    showNotification('Welcome! Explore our interactive lessons on Error Correction Codes! 🎓', 'info');
 });
 </script>
 
 <style>
 .page-section {
     display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 .page-section.active {
     display: block;
+    opacity: 1;
 }
 .quiz-box {
     background: #5c4848ff;
@@ -365,14 +572,36 @@ document.addEventListener('DOMContentLoaded', function() {
     padding: 15px;
     margin-bottom: 15px;
     color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.quiz-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 .quiz-box p { font-weight: bold; }
-.quiz-box label { display: block; margin: 5px 0; cursor: pointer; color: #fff; }
+.quiz-box label { 
+    display: block; 
+    margin: 5px 0; 
+    cursor: pointer; 
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background 0.2s ease;
+}
+.quiz-box label:hover {
+    background: rgba(255,255,255,0.1);
+    padding-left: 15px;
+}
+.quiz-box input[type="radio"]:checked + label {
+    background: rgba(76, 175, 80, 0.3);
+}
 .result-box {
     margin-top: 20px;
     padding: 15px;
-    background: #e8f5e9;
+    background: #2d2d2d;
     border-left: 6px solid #4caf50;
+    border-radius: 10px;
+    animation: slideIn 0.5s ease-out;
 }
 .profile-circle {
     width: 150px;
@@ -381,11 +610,195 @@ document.addEventListener('DOMContentLoaded', function() {
     overflow: hidden;
     margin: 0 auto 20px;
     border: 3px solid #333;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.member:hover .profile-circle {
+    transform: scale(1.1) rotate(5deg);
+    border-color: #a00000;
 }
 .profile-pic {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.member:hover .profile-pic {
+    transform: scale(1.2);
+}
+nav a {
+    position: relative;
+    overflow: hidden;
+}
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: #a00000;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+nav a:hover::after,
+nav a.active::after {
+    width: 80%;
+}
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+.btn:active {
+    transform: scale(0.95);
+}
+.feature-card, .lesson-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+.lesson-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(160, 0, 0, 0.4);
+}
+.example-box {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.example-box:hover {
+    transform: translateX(10px);
+    box-shadow: -5px 5px 15px rgba(160, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover effects for interactive elements */
+.interactive-demo {
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(160,0,0,0.1), rgba(160,0,0,0.2));
+    border-radius: 15px;
+    border: 2px dashed #a00000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 20px 0;
+}
+
+.interactive-demo:hover {
+    background: linear-gradient(135deg, rgba(160,0,0,0.2), rgba(160,0,0,0.3));
+    border-style: solid;
+    transform: scale(1.02);
+}
+
+/* Loading animation */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #a00000;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
 }
 </style>
 
